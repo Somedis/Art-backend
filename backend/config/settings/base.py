@@ -37,6 +37,7 @@ THIRD_PARTY = [
 ]
 
 LOCAL_APPS = [
+    'home',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY + LOCAL_APPS
@@ -78,8 +79,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'art_db',
+        'USER': 'postgres',
+        'PASSWORD': '13RoadToTheMoon37',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
