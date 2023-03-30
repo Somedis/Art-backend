@@ -4,7 +4,7 @@
 html,
 body {
     font-family: 'Poppins', sans-serif;
-    background: #fff url(https://free4kwallpapers.com/uploads/originals/2019/12/28/minimalist-fog-wallpaper.jpg) center center no-repeat fixed;
+    background: #fff url('../../static/images/background.jpg') center center no-repeat fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

@@ -1,9 +1,17 @@
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls.static import static
 
-from apps.home.views import HomeView
+from config.settings import base
+
+from home.views import index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('/', HomeView.as_view(), name='home'),
+    path('', index, name='home'),
 ]
+
+if base.DEBUG:
+
+    urlpatterns += static(base.MEDIA_URL,
+                          document_root=base.MEDIA_ROOT)

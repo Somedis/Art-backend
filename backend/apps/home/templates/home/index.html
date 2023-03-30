@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,12 +8,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-  <link rel="stylesheet" href="static/css/styles.css">
-  <link rel="stylesheet" href="static/css/new.css">
-  <link rel="apple-touch-icon" sizes="180x180" href="static/images/icon/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="static/images/icon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="static/images/icon/favicon-16x16.png">
-  <script src="static/js/main.js"></script>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="stylesheet" href="{% static 'css/new.css' %}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png' %}">
+  <script src="{% static 'js/main.js' %}"></script>
   <title>Home</title>
 </head>
 
@@ -28,7 +27,7 @@
             <div class="flex items-center justify-between px-6 py-3.5 bg-nav-gray rounded-full">
               <div class="w-auto">
                 <div class="flex flex-wrap items-center">
-                  <div class="w-auto"><a href="index.html"><img src="static/images/Logo.png" alt=""
+                  <div class="w-auto"><a href="#"><img src="{% static 'images/Logo.png' %}" alt=""
                         data-config-id="auto-img-1-1" /></a></div>
                 </div>
               </div>
@@ -36,13 +35,13 @@
                 <div class="flex flex-wrap items-center">
                   <div class="w-auto hidden lg:block">
                     <ul class="flex items-center justify-center">
-                      <li class="mr-8"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700 active" href="index.html"
+                      <li class="mr-8"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700 active" href="#"
                           data-config-id="auto-txt-1-1">Home</a></li>
-                      <li class="mr-8"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="arts.html"
+                      <li class="mr-8"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="#"
                               data-config-id="auto-txt-4-1">Arts</a></li>
-                      <li class="mr-8"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="add_post.html"
+                      <li class="mr-8"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="#"
                           data-config-id="auto-txt-2-1">Add post</a></li>
-                      <li><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="add_art.html"
+                      <li><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="#"
                           data-config-id="auto-txt-3-1">Add art</a></li>
                     </ul>
                   </div>
@@ -77,7 +76,7 @@
                   <div class="w-full">
                     <div class="flex items-center justify-between -m-2">
                       <div class="w-auto p-2"><a class="inline-block" href="#"><img
-                            src="static/images/Logo.png" alt="" data-config-id="auto-img-2-1" /></a></div>
+                            src="{% static 'images/Logo.png' %}" alt="" data-config-id="auto-img-2-1" /></a></div>
                       <div class="w-auto p-2"><a class="inline-block navbar-burger" href="#">
                           <svg width="24" height="24" viewbox="0 0 24 24" fill="none"
                             data-config-id="auto-svg-2-1">
@@ -123,27 +122,27 @@
           <div class="col-lg-1">
           </div>
 
-          <!-- <div class="col-lg-8 col-md-12 my-5"> -->
-            <!-- <div class="row"> -->
-              <!-- <div class="some-cont"> -->
 
-                <!-- <div id="carouselExampleCaptions" class="carousel slide"> -->
-                  <!-- <div class="carousel-indicators"> -->
-                    <!-- <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <div class="col-lg-8 col-md-12 my-5">
+            <div class="row">
+              <div class="some-cont">
+                
+                <div id="carouselExampleCaptions" class="carousel slide">
+                  <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                  </div> -->
-                  <!-- <div class="carousel-inner"> -->
-                    <!-- <div class="carousel-item active"> -->
-                      <!-- preview img image -->
-                      <!-- <img src="#" class="d-block w-100" alt="">
-                      <div class="carousel-caption d-none d-md-block"> -->
-                        <!-- preview img title -->
-                        <!-- <h5 class="my-1 sm-text"></h5> -->
-                        <!-- preview img content -->
-                        <!-- <p class="sm-text"></p>
+                    </div>
+                    <div class="carousel-inner">
+                    {% for h in homepage %}
+                    <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %}">
+                      <img src="{{h.image.url}}" class="d-block w-100" alt="">
+                      <div class="carousel-caption d-none d-md-block">
+                        <h5 class="my-1 sm-text">{{h.title}}</h5>
+                        <p class="sm-text">{{h.content}}</p>
                       </div>
                     </div>
+                    {% endfor %}
                   </div>
                   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -156,23 +155,23 @@
                 </div>
               </div>
             </div>
-          </div> -->
+          </div>
 
-          <!-- <div class="col-lg-3 col-md-12"> -->
-            <!-- <div class="row sidebarmain"> -->
-              <!-- <div class="col-lg-12 sidebar mt-5"> -->
-                <!-- !!! username and date !!! -->
+          <!-- <div class="col-lg-3 col-md-12">
+            <div class="row sidebarmain">
+              <div class="col-lg-12 sidebar mt-5">
+                !!! username and date !!!
                 <div class="posts">
                   <label class="user-name"></label>
                   <label class="date-lab"></label>
                 </div>
-                <!-- !!! title !!! -->
+                !!! title !!!
                 <label></label>
-                <!-- !!! content !!! -->
+                !!! content !!!
                 <p></p>
-                </div>
+              </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </section>
@@ -185,7 +184,7 @@
           <div class="py-8 px-8 mb-8 bg-white rounded-3xl">
             <div class="max-w-7xl mx-auto">
               <div class="flex flex-wrap items-center justify-between -m-4">
-                <div class="w-auto p-4"><img src="static/images/Logo.png" alt="" data-config-id="auto-img-1-3"/></div>
+                <div class="w-auto p-4"><img src="{% static 'images/Logo.png' %}" alt="" data-config-id="auto-img-1-3"/></div>
                 <div class="w-auto p-4">
                   <ul class="-m-6">
                     <li class="inline-flex p-6"><a class="inline-block text-gray font-bold" href="#" data-config-id="auto-txt-1-3">Products</a></li>
