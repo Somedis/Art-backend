@@ -1,3 +1,8 @@
 from django.shortcuts import render
 
-# Create your views here.
+from .models import Arts
+
+
+def arts(request):
+    artscards = Arts.objects.all()
+    return render(request, 'arts/arts.html', {'cards': artscards, })

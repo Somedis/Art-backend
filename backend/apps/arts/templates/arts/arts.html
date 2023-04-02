@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block menuactive %}
+<li class="mr-8"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700"
+        href="{% url 'home' %}" data-config-id="auto-txt-1-1">Home</a></li>
+<li class="mr-8"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700 active" href="{% url 'arts' %}"
+        data-config-id="auto-txt-4-1">Arts</a></li>
+{% endblock menuactive %}
+
+{% block content %}
+<div class="row">
+    {% for c in cards %}
+    <div class="col-lg-4 col-md-6 mb-5">
+        <div class="card">
+            <a href=""><img src="{{c.image.url}}" class="card-img-top" alt=""></a>
+            <div class="card-body">
+                <!-- !!! card title !!! -->
+                <h5 class="card-title font-bold"><a href="#">{{c.title}}</a></h5>
+                <p class="card-text pb-2">
+                    <!-- !!! card content !!! -->
+                    <a href="#">{{c.content|truncatechars:70}}</a>
+                </p>
+                <a href="#" class="btn btn-primary" id="btn-more">More</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}
+
+{% block footersection %}
+<section data-section-id="1" data-share="" data-category="footers-light-reverse" data-component-id="6fcf3400_03_awz"
+    class="pb-10 overflow-hidden">
+    {% endblock footersection %}

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 # from django.views.generic.base import TemplateView
-from django.utils import timezone
-from django.views.generic import DetailView, ListView, View
+from django.utils import timezone # noqa
+from django.views.generic import DetailView, ListView, View # noqa
 
 from .models import PreviewImage
 
@@ -20,4 +20,6 @@ from .models import PreviewImage
 
 def index(request):
     homepage = PreviewImage.objects.all()
-    return render(request, 'home/index.html', {'homepage': homepage, })
+    count = range(0, homepage.__len__())
+    return render(request, 'home/index.html', {'homepage': homepage,
+                                               'count': count, })

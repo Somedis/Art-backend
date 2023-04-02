@@ -125,9 +125,10 @@ a.inline-block.text-sm.font-bold.text-gray-900:hover {
     text-shadow: 1px 2px 1px black;
 }
 
-/* .my-1.sm-text h5 {
-    font-size: 2em;
-} */
+.card-m-b {
+    margin-top: 3rem !important;
+    margin-bottom: 50px;
+}
 
 /* card */
 
