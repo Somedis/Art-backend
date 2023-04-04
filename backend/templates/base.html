@@ -54,12 +54,21 @@
                 <div class="flex flex-wrap items-center">
                   <div class="w-auto hidden lg:block">
                     <div class="flex flex-wrap -m-1">
+                      {% if request.user.is_authenticated %}
+                      <div class="w-full md:w-auto p-2"><a
+                        class="block w-full px-4 py-2.5 text-sm text-center text-gray-900 font-bold bg-gray-100 hover:bg-gray-200 focus:ring-4 focus:ring-gray-500 rounded-full disabled"
+                        href="#" data-config-id="auto-txt-5-1" id="log">{{user.username}}</a></div>
+                      <div class="w-full md:w-auto p-2"><a
+                        class="block w-full px-4 py-2.5 text-sm text-center text-white font-bold bg-red-600 hover:bg-red-700 focus:ring-5 focus:ring-red rounded-full"
+                        href="#" data-config-id="auto-txt-6-1" id="reg">Log out</a></div>
+                      {% else %}
                       <div class="w-full md:w-auto p-2"><a
                           class="block w-full px-4 py-2.5 text-sm text-center text-gray-900 font-bold bg-gray-100 hover:bg-gray-200 focus:ring-4 focus:ring-gray-500 rounded-full"
-                          href="#" data-config-id="auto-txt-5-1" id="log">Log In</a></div>
+                          href="{% url 'login' %}" data-config-id="auto-txt-5-1" id="log">Log In</a></div>
                       <div class="w-full md:w-auto p-2"><a
                           class="block w-full px-4 py-2.5 text-sm text-center text-white font-bold bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:ring-blue-200 rounded-full"
-                          href="#" data-config-id="auto-txt-6-1" id="reg">Registration</a></div>
+                          href="{% url 'registration' %}" data-config-id="auto-txt-6-1" id="reg">Registration</a></div>
+                      {% endif %}
                     </div>
                   </div>
                   <div class="w-auto lg:hidden"><a class="inline-block">

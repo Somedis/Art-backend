@@ -111,7 +111,8 @@ a.inline-block.text-sm.font-bold.text-gray-900:hover {
 }
 
 .disabled {
-    color: rgb(183, 180, 180);
+    color: rgb(0, 0, 0) !important;
+    background-color: rgb(141, 141, 141) !important;
     pointer-events: none;
 }
 
