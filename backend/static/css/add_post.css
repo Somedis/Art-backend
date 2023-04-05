@@ -42,6 +42,20 @@
     padding: 6px;
 }
 
+.content {
+    background: whitesmoke;
+    resize: none;
+    width: 100%;
+    height: 150px;
+    border: 2px solid black;
+    border-radius: 6px;
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 6px;
+}
+
 .button-cont {
     display: flex;
     justify-content: center;

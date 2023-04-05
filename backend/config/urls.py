@@ -7,6 +7,7 @@ from config.settings import base
 from home.views import index
 from arts.views import arts
 from users.views import registration, logout_user, login_user
+from article.views import AddArticleView
 
 
 urlpatterns = [
@@ -16,6 +17,7 @@ urlpatterns = [
     path('registration/', registration, name='registration'),
     path('login/', login_user, name='login'),
     path('logout/', logout_user, name='logout'),
+    path('addArt/', AddArticleView.as_view(), name='addArt'),
 ]
 
 if base.DEBUG:

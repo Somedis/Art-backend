@@ -1,11 +1,18 @@
 {% extends 'base.html' %}
 
 {% block menuactive %}
-<li class="mr-8"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700"
-        href="{% url 'home' %}" data-config-id="auto-txt-1-1">Home</a></li>
-<li class="mr-8"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700 active" href="{% url 'arts' %}"
-        data-config-id="auto-txt-4-1">Arts</a></li>
+<li class="mr-8"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="{% url 'home' %}"
+        data-config-id="auto-txt-1-1">Home</a></li>
+<li class="mr-8"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700 active"
+        href="{% url 'arts' %}" data-config-id="auto-txt-4-1">Arts</a></li>
 {% endblock menuactive %}
+
+{% block burgmenu %}
+<li class="mb-9"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="{% url 'home' %}"
+        data-config-id="auto-txt-7-1">Home</a></li>
+<li class="mb-9"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700 active"
+        href="{% url 'arts' %}" data-config-id="auto-txt-10-1">Arts</a></li>
+{% endblock burgmenu %}
 
 {% block content %}
 <div class="row">

@@ -42,10 +42,12 @@
                       <li class="mr-8"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="{% url 'arts' %}"
                               data-config-id="auto-txt-4-1">Arts</a></li>
                       {% endblock menuactive %}
+                      {% if request.user.is_authenticated %}
                       <li class="mr-8"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="#"
                           data-config-id="auto-txt-2-1">Add post</a></li>
-                      <li><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="#"
+                      <li><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="{% url 'addArt' %}"
                           data-config-id="auto-txt-3-1">Add art</a></li>
+                      {% endif %}
                     </ul>
                   </div>
                 </div>
@@ -59,8 +61,8 @@
                         class="block w-full px-4 py-2.5 text-sm text-center text-gray-900 font-bold bg-gray-100 hover:bg-gray-200 focus:ring-4 focus:ring-gray-500 rounded-full disabled"
                         href="#" data-config-id="auto-txt-5-1" id="log">{{user.username}}</a></div>
                       <div class="w-full md:w-auto p-2"><a
-                        class="block w-full px-4 py-2.5 text-sm text-center text-white font-bold bg-red-600 hover:bg-red-700 focus:ring-5 focus:ring-red rounded-full"
-                        href="#" data-config-id="auto-txt-6-1" id="reg">Log out</a></div>
+                        class="block w-full px-4 py-2.5 text-sm text-center text-white font-bold bg-red-600 hover:bg-red-700 focus:ring-4 focus:ring-gray-300 rounded-full"
+                        href="{% url 'logout' %}" data-config-id="auto-txt-6-1" id="reg">Log out</a></div>
                       {% else %}
                       <div class="w-full md:w-auto p-2"><a
                           class="block w-full px-4 py-2.5 text-sm text-center text-gray-900 font-bold bg-gray-100 hover:bg-gray-200 focus:ring-4 focus:ring-gray-500 rounded-full"
@@ -99,24 +101,37 @@
                   </div>
                   <div class="flex flex-col justify-center py-8 w-full">
                     <ul>
+                      {% block burgmenu %}
                       <li class="mb-9"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700 active" href="{% url 'home' %}"
                           data-config-id="auto-txt-7-1">Home</a></li>
                       <li class="mb-9"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="{% url 'arts' %}"
                               data-config-id="auto-txt-10-1">Arts</a></li>
+                      {% endblock burgmenu %}
+                      {% if request.user.is_authenticated %}
                       <li class="mb-9"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="#"
                           data-config-id="auto-txt-8-1">Add post</a></li>
                       <li><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="#"
                           data-config-id="auto-txt-9-1">Add art</a></li>
+                      {% endif %}
                     </ul>
                   </div>
                   <div class="flex flex-col justify-end w-full pb-8">
                     <div class="flex flex-wrap -m-2">
+                      {% if request.user.is_authenticated %}
+                      <div class="w-full p-2"><a
+                        class="block w-full px-4 py-2.5 text-sm text-center text-gray-900 font-bold bg-gray-100 hover:bg-gray-200 focus:ring-4 focus:ring-gray-500 rounded-full disabled"
+                        href="#" data-config-id="auto-txt-11-1" id="log">{{user.username}}</a></div>
+                      <div class="w-full p-2"><a
+                        class="block w-full px-4 py-2.5 text-sm text-center text-white font-bold bg-red-600 hover:bg-red-700 focus:ring-4 focus:ring-gray-300 rounded-full"
+                        href="{% url 'logout' %}" data-config-id="auto-txt-12-1">Log out</a></div>
+                      {% else %}
                       <div class="w-full p-2"><a
                           class="block w-full px-4 py-2.5 text-sm text-center text-gray-900 font-bold bg-gray-100 hover:bg-gray-200 focus:ring-4 focus:ring-gray-500 rounded-full"
-                          href="#" data-config-id="auto-txt-11-1" id="log">Log In</a></div>
+                          href="{% url 'login' %}" data-config-id="auto-txt-11-1" id="log">Log In</a></div>
                       <div class="w-full p-2"><a
                           class="block w-full px-4 py-2.5 text-sm text-center text-white font-bold bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:ring-blue-200 rounded-full"
-                          href="#" data-config-id="auto-txt-12-1">Registration</a></div>
+                          href="{% url 'registration' %}" data-config-id="auto-txt-12-1">Registration</a></div>
+                      {% endif %}
                     </div>
                   </div>
                 </div>

@@ -112,12 +112,18 @@ a.inline-block.text-sm.font-bold.text-gray-900:hover {
 
 .disabled {
     color: rgb(0, 0, 0) !important;
-    background-color: rgb(141, 141, 141) !important;
+    background-color: rgb(233, 229, 229) !important;
     pointer-events: none;
+}
+
+.focus\:ring-gray-300:focus {
+    --tw-ring-opacity: .5;
+    --tw-ring-color: rgba(216, 19, 19, var(--tw-ring-opacity));
 }
 
 .active {
     color: rgb(94, 93, 93);
+    pointer-events: none;
 }
 
 /* end navbar */

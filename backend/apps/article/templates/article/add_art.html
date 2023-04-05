@@ -1,0 +1,64 @@
+{% extends 'base_add.html' %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+<link rel="stylesheet" href="{% static 'css/add_post.css' %}">
+<link rel="stylesheet" href="{% static 'css/add_art.css' %}">
+{% endblock styles %}
+
+{% block title %}
+<title>Add art</title>
+{% endblock title %}
+
+{% block content %}
+<h2>Add art</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="input-box">
+        <span class="icon">
+            <ion-icon name="pencil"></ion-icon>
+        </span>
+        <!-- <input type="text" required> -->
+        {{ form.title }}
+        <label>Title</label>
+    </div>
+    <div class="input-box" id="url">
+        <span class="icon">
+            <ion-icon name="pencil"></ion-icon>
+        </span>
+        <!-- <input type="text" required> -->
+        {{ form.slug }}
+        <label>URL</label>
+    </div>
+    <div class="textar">
+        <label>Content</label>
+        <br>
+        <!-- <textarea name="content" class="content" cols="30" rows="10" maxlength="256"></textarea> -->
+        {{ form.content }}
+        {{ form.errors }}
+    </div>
+    <div class="file-add">
+        <div class="upload">
+            <label for="image_uploads">Choose images to upload</label>
+            <!-- <input type="file" class="inpt" id="image_uploads" name="image_uploads" accept=".jpg, .jpeg, .png" multiple> -->
+            {{ form.image }}
+        </div>
+        <div class="preview">
+            <p>No files currently selected for upload</p>
+        </div>
+    </div>
+    <div class="remember-forgot">
+        <label>
+            {{ form.is_publish }}Publish
+        </label>
+    </div>
+    <div class="button-cont">
+        <button type="submit" class="btn">Add</button>
+    </div>
+</form>
+{% endblock content %}
+
+{% block script %}
+<script src="{% static 'js/add_art.js' %}"></script>
+{% endblock script %}
