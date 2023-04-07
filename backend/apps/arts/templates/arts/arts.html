@@ -17,7 +17,7 @@
 {% block content %}
 <div class="row">
     {% for c in cards %}
-    <div class="col-lg-4 col-md-6 mb-5">
+    <div class="col-lg-4 col-md-6 mt-5">
         <div class="card">
             <a href=""><img src="{{c.image.url}}" class="card-img-top" alt=""></a>
             <div class="card-body">
@@ -35,7 +35,24 @@
 </div>
 {% endblock content %}
 
-{% block footersection %}
-<section data-section-id="1" data-share="" data-category="footers-light-reverse" data-component-id="6fcf3400_03_awz"
-    class="pb-10 overflow-hidden">
-    {% endblock footersection %}
+{% block post %}
+<div class="row sidebarmain mt-4">
+  {% for p in posts %}
+  <div class="col-lg-12 sidebar mt-4">
+    <div class="posts">
+      <label class="user-name rounded-full disabled">{{p.user}}</label>
+    </div>
+    {% if p.title %}
+    <div class="title">
+      <label><span>Title: </span>{{p.title}}</label>
+    </div>
+    {% endif %}
+    <p>{{p.content}}</p>
+    <div class="date-tm">
+      <label class="date-lab">{{p.time_create}}</label>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock post %}
+

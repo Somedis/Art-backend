@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="row">
+<div class="row mt-5">
   <div class="some-cont">
     <div id="carouselExampleCaptions" class="carousel slide">
       <div class="carousel-indicators">
         {% for i in count %}
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{i}}" class="{% if forloop.counter0 == 0 %}active{% endif %}" aria-current="true"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{i}}"
+          class="{% if forloop.counter0 == 0 %}active{% endif %}" aria-current="true"></button>
         {% endfor %}
       </div>
       <div class="carousel-inner">
@@ -34,3 +35,24 @@
   </div>
 </div>
 {% endblock content %}
+
+{% block post %}
+<div class="row sidebarmain mt-4">
+  {% for p in posts %}
+  <div class="col-lg-12 sidebar mt-4">
+    <div class="posts">
+      <label class="user-name rounded-full disabled">{{p.user}}</label>
+    </div>
+    {% if p.title %}
+    <div class="title">
+      <label><span>Title: </span>{{p.title}}</label>
+    </div>
+    {% endif %}
+    <p>{{p.content}}</p>
+    <div class="date-tm">
+      <label class="date-lab">{{p.time_create}}</label>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock post %}

@@ -184,7 +184,7 @@ a.inline-block.text-sm.font-bold.text-gray-900:hover {
 
 .sidebar>p {
     padding-left: 1em;
-    padding-bottom: 1em;
+    padding-bottom: .5em;
     /* padding-right: 0.5em; */
     margin: 0;
 }
@@ -216,16 +216,36 @@ a.inline-block.text-sm.font-bold.text-gray-900:hover {
 
 .posts {
     display: flex;
-    justify-content: space-between;
-    margin-left: 25px;
+    justify-content: left;
+    margin-left: 15px;
     margin-right: 15px;
-    margin-top: 10px;
-    margin-bottom: 5px;
+    margin-top: 15px;
+    margin-bottom: 10px;
 }
 
 .user-name {
     font-size: 1.1em;
     font-weight: 600;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-bottom: .2em;
+    padding-top: .2em;
+}
+
+.title {
+    display: flex;
+    justify-content: left;
+    margin-left: 25px;
+}
+
+.title span {
+    font-weight: 800;
+}
+
+.date-tm {
+    display: flex;
+    justify-content: right;
+    margin-bottom: 5px;
 }
 
 .date-lab {

@@ -43,7 +43,7 @@
                               data-config-id="auto-txt-4-1">Arts</a></li>
                       {% endblock menuactive %}
                       {% if request.user.is_authenticated %}
-                      <li class="mr-8"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="#"
+                      <li class="mr-8"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="{% url 'addPost' %}"
                           data-config-id="auto-txt-2-1">Add post</a></li>
                       <li><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="{% url 'addArt' %}"
                           data-config-id="auto-txt-3-1">Add art</a></li>
@@ -151,26 +151,15 @@
           </div>
 
 
-          <div class="col-lg-8 col-md-12 my-5">
+          <div class="col-lg-8 col-md-12">
             {% block content %}
             {% endblock content %}
           </div>
 
-          <!-- <div class="col-lg-3 col-md-12">
-            <div class="row sidebarmain">
-              <div class="col-lg-12 sidebar mt-5">
-                !!! username and date !!!
-                <div class="posts">
-                  <label class="user-name"></label>
-                  <label class="date-lab"></label>
-                </div>
-                !!! title !!!
-                <label></label>
-                !!! content !!!
-                <p></p>
-              </div>
-            </div>
-          </div> -->
+          <div class="col-lg-3 col-md-12">
+            {% block post %}
+            {% endblock post %}
+          </div>
         </div>
       </div>
     </section>
@@ -181,7 +170,7 @@
       {% block footersection %}
       <section data-section-id="1" data-share="" data-category="footers-light-reverse" data-component-id="6fcf3400_03_awz" class="py-10 overflow-hidden">
       {% endblock footersection %}
-        <div class="container mx-auto px-4">
+        <div class="container mx-auto px-4 mt-5">
           <div class="py-8 px-8 mb-8 bg-white rounded-3xl">
             <div class="max-w-7xl mx-auto">
               <div class="flex flex-wrap items-center justify-between -m-4">
