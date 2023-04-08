@@ -276,3 +276,37 @@ div.w-auto.p-4.n-size img {
 }
 /* end footer */
 
+/* show art */
+.art-card {
+    background-color: whitesmoke;
+    border-style: solid;
+    border-radius: 1em;
+    border-width: 1.5px;
+    border-color: gainsboro;
+    box-shadow: 0 0 10px rgba(26, 9, 9, 0.4);
+    width: 100%;
+    /* padding-top: 1em; */
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 1em;
+}
+
+.position-img {
+    display: flex;
+    justify-content: center;
+}
+
+.position-img img {
+    border-radius: 30px;
+}
+
+.art-card img {
+    padding: 1em;
+    width: 100%;
+}
+
+.art-card p {
+    margin-bottom: 1em;
+    font-size: 1.1em;
+}
+

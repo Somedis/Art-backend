@@ -5,7 +5,7 @@ from .models import Arts
 
 
 class ArtscCardsAdmin(admin.ModelAdmin):
-    list_display = ('title', 'slug', 'content', 'get_html_image',
+    list_display = ('title', 'slug', 'get_html_image',
                     'time_create', 'is_publish')
     prepopulated_fields = {'slug': ('title', )}
 

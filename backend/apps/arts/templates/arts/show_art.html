@@ -3,35 +3,25 @@
 {% block menuactive %}
 <li class="mr-8"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="{% url 'home' %}"
         data-config-id="auto-txt-1-1">Home</a></li>
-<li class="mr-8"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700 active"
+<li class="mr-8"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700"
         href="{% url 'arts' %}" data-config-id="auto-txt-4-1">Arts</a></li>
 {% endblock menuactive %}
 
 {% block burgmenu %}
 <li class="mb-9"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="{% url 'home' %}"
         data-config-id="auto-txt-7-1">Home</a></li>
-<li class="mb-9"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700 active"
+<li class="mb-9"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700"
         href="{% url 'arts' %}" data-config-id="auto-txt-10-1">Arts</a></li>
 {% endblock burgmenu %}
 
 {% block content %}
-<div class="row">
-    {% for c in cards %}
-    <div class="col-lg-4 col-md-6 mt-5">
-        <div class="card">
-            <a href="{{ c.get_absolute_url }}"><img src="{{c.image.url}}" class="card-img-top" alt=""></a>
-            <div class="card-body">
-                <!-- !!! card title !!! -->
-                <h5 class="card-title font-bold"><a href="">{{c.title}}</a></h5>
-                <p class="card-text pb-2">
-                    <!-- !!! card content !!! -->
-                    <a href="{{ c.get_absolute_url }}">{{c.content|truncatechars:70}}</a>
-                </p>
-                <a href="{{ c.get_absolute_url }}" class="btn btn-primary" id="btn-more">More</a>
-            </div>
-        </div>
+<div class="art-card mt-5">
+    <div class="position-img">
+        {% if art.image %}
+        <img class="img-f-art" src="{{art.image.url}}">
+        {% endif %}
     </div>
-    {% endfor %}
+    {{art.content|linebreaks}}
 </div>
 {% endblock content %}
 
@@ -55,4 +45,3 @@
   {% endfor %}
 </div>
 {% endblock post %}
-
