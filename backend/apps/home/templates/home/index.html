@@ -38,10 +38,14 @@
 
 {% block post %}
 <div class="row sidebarmain mt-4">
-  {% for p in posts %}
+  {% for p in page_obj %}
   <div class="col-lg-12 sidebar mt-4">
     <div class="posts">
+      {% if p.user.is_staff == True %}
+      <label class="user-name rounded-full disabled">{{p.user}} - Admin</label>
+      {% else %}
       <label class="user-name rounded-full disabled">{{p.user}}</label>
+      {% endif %}
     </div>
     {% if p.title %}
     <div class="title">
@@ -55,4 +59,32 @@
   </div>
   {% endfor %}
 </div>
+
+{% if page_obj.has_other_pages %}
+<section class="mt-4 list-pages">
+  <ul class="page-num">
+    {% if page_obj.has_previous %}
+    <a href="?page={{ page_obj.previous_page_number }}">
+      <li>&lt;</li>
+    </a>
+    {% endif %}
+
+    {% for pg in page_obj.paginator.page_range %}
+    {% if page_obj.number == pg %}
+    <a href="?page={{ pg }}" class="page-active">
+      <li>{{ pg }}</li>
+    </a>
+    {% elif pg >= page_obj.number|add:-1 and pg <= page_obj.number|add:1 %} <a href="?page={{ pg }}">
+      <li>{{ pg }}</li></a>
+    {% endif %}
+    {% endfor %}
+
+      {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}">
+        <li>&gt;</li>
+      </a>
+      {% endif %}
+  </ul>
+</section>
+{% endif %}
 {% endblock post %}

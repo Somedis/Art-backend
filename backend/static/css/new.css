@@ -309,4 +309,49 @@ div.w-auto.p-4.n-size img {
     margin-bottom: 1em;
     font-size: 1.1em;
 }
+/* end show art */
 
+/* paginator */
+
+.list-pages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page-num {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0.5rem 0.75rem;
+    border-radius: .5rem;
+    background-color: whitesmoke;
+    box-shadow: 0 0 10px rgba(26, 9, 9, 0.4);
+}
+
+.page-num li {
+    margin: 0.25rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.5rem;
+}
+
+.page-num a {
+    border-radius: 0.5rem;
+    margin: 0.25rem;
+}
+
+.page-num a:hover {
+    background-color: rgb(200, 197, 197);
+    color: black;
+}
+
+.page-num a:focus {
+    background-color: rgb(145, 143, 143);
+    color: black;
+}
+
+.page-active {
+    background-color: rgb(200, 197, 197);
+    color: black;
+}
