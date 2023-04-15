@@ -1,38 +1,31 @@
 {% extends 'base.html' %}
 
+{% block menuactive %}
+<li class="mr-8"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="{% url 'home' %}"
+    data-config-id="auto-txt-1-1">Home</a></li>
+<li class="mr-8"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="{% url 'cats' %}"
+    data-config-id="auto-txt-1-1">Categories</a></li>
+<li class="mr-8"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700"
+    href="{% url 'arts' %}" data-config-id="auto-txt-4-1">Arts</a></li>
+{% endblock menuactive %}
+
+{% block burgmenu %}
+<li class="mb-9"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="{% url 'home' %}"
+    data-config-id="auto-txt-7-1">Home</a></li>
+<li class="mb-9"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="{% url 'cats' %}"
+    data-config-id="auto-txt-7-1">Categories</a></li>
+<li class="mb-9"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700"
+    href="{% url 'arts' %}" data-config-id="auto-txt-10-1">Arts</a></li>
+{% endblock burgmenu %}
+
 {% block content %}
-<div class="row mt-5">
-  <div class="some-cont">
-    <div id="carouselExampleCaptions" class="carousel slide">
-      <div class="carousel-indicators">
-        {% for i in count %}
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{i}}"
-          class="{% if forloop.counter0 == 0 %}active{% endif %}" aria-current="true"></button>
-        {% endfor %}
-      </div>
-      <div class="carousel-inner">
-        {% for h in homepage %}
-        <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %}">
-          <img src="{{h.image.url}}" class="d-block w-100" alt="">
-          <div class="carousel-caption d-none d-md-block">
-            <h5 class="my-1 sm-text">{{h.title}}</h5>
-            <p class="sm-text">{{h.content}}</p>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
-        data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
-        data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
+<div class="art-card mt-5">
+    <div class="position-img">
+        {% if cat.image %}
+        <img class="img-f-art" src="{{cat.image.url}}">
+        {% endif %}
     </div>
-  </div>
+    {{cat.content|linebreaks}}
 </div>
 {% endblock content %}
 
@@ -79,8 +72,8 @@
     </a>
     {% elif pg >= page_obj.number|add:-1 and pg <= page_obj.number|add:1 %} <a href="?page={{ pg }}">
       <li>{{ pg }}</li></a>
-    {% endif %}
-    {% endfor %}
+      {% endif %}
+      {% endfor %}
 
       {% if page_obj.has_next %}
       <a href="?page={{ page_obj.next_page_number }}">

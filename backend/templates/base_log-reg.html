@@ -19,7 +19,7 @@
 <body>
 
     <div class="wrappers">
-        <a href="{% url 'home' %}">
+        <a href="{{request.META.HTTP_REFERER|escape}}">
             <span class="icon-close">
                 <ion-icon name="close-outline"></ion-icon>
             </span>

@@ -4,15 +4,14 @@
 {% block styles %}
 <link rel="stylesheet" href="{% static 'css/login.css' %}">
 <link rel="stylesheet" href="{% static 'css/add_art.css' %}">
-<link rel="stylesheet" href="{% static 'css/add_cat.css' %}">
 {% endblock styles %}
 
 {% block title %}
-<title>Add art</title>
+<title>Add category</title>
 {% endblock title %}
 
 {% block content %}
-<h2>Add art</h2>
+<h2>Add category</h2>
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="input-box">
@@ -21,7 +20,7 @@
         </span>
         <!-- <input type="text" required> -->
         {{ form.title }}
-        <label>Definition</label>
+        <label>Title</label>
     </div>
     <div class="input-box" id="url">
         <span class="icon">
@@ -30,6 +29,12 @@
         <!-- <input type="text" required> -->
         {{ form.slug }}
         <label>URL</label>
+    </div>
+    <div class="textar">
+        <label>Content</label>
+        <br>
+        <!-- <textarea name="content" class="content" cols="30" rows="10" maxlength="256"></textarea> -->
+        {{ form.content }}
     </div>
     <div class="file-add">
         <div class="upload">
@@ -40,10 +45,6 @@
         <div class="preview">
             <p>No files currently selected for upload</p>
         </div>
-    </div>
-    <div class="cat-select">
-        <label>Category</label>
-        {{ form.cat }}
     </div>
     <div class="remember-forgot">
         <label>

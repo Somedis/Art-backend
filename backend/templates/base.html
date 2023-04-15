@@ -39,12 +39,14 @@
                       {% block menuactive %}
                       <li class="mr-8"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700 active" href="{% url 'home' %}"
                           data-config-id="auto-txt-1-1">Home</a></li>
+                      <li class="mr-8"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="{% url 'cats' %}"
+                          data-config-id="auto-txt-4-1">Categories</a></li>
                       <li class="mr-8"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="{% url 'arts' %}"
                               data-config-id="auto-txt-4-1">Arts</a></li>
                       {% endblock menuactive %}
                       {% if request.user.is_authenticated %}
-                      <li class="mr-8"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="{% url 'addPost' %}"
-                          data-config-id="auto-txt-2-1">Add post</a></li>
+                      <li class="mr-8"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="{% url 'addCat' %}"
+                          data-config-id="auto-txt-3-1">Add category</a></li>
                       <li><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="{% url 'addArt' %}"
                           data-config-id="auto-txt-3-1">Add art</a></li>
                       {% endif %}
@@ -104,13 +106,17 @@
                       {% block burgmenu %}
                       <li class="mb-9"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700 active" href="{% url 'home' %}"
                           data-config-id="auto-txt-7-1">Home</a></li>
+                      <li class="mb-9"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="{% url 'cats' %}"
+                          data-config-id="auto-txt-10-1">Categories</a></li>
                       <li class="mb-9"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="{% url 'arts' %}"
                               data-config-id="auto-txt-10-1">Arts</a></li>
                       {% endblock burgmenu %}
                       {% if request.user.is_authenticated %}
-                      <li class="mb-9"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="#"
+                      <li class="mb-9"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="{% url 'addPost' %}"
                           data-config-id="auto-txt-8-1">Add post</a></li>
-                      <li><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="#"
+                      <li class="mb-9"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="{% url 'addCat' %}"
+                          data-config-id="auto-txt-8-1">Add category</a></li>
+                      <li><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="{% url 'addArt' %}"
                           data-config-id="auto-txt-9-1">Add art</a></li>
                       {% endif %}
                     </ul>
@@ -146,6 +152,7 @@
     <section>
       <div class="container-fluid">
         <div class="row">
+          {% block row %}
 
           <div class="col-lg-1">
           </div>
@@ -156,10 +163,11 @@
             {% endblock content %}
           </div>
 
-          <div class="col-lg-3 col-md-12">
+          <div class="col-lg-3 col-md-12 mt-4">
             {% block post %}
             {% endblock post %}
           </div>
+          {% endblock row %}
         </div>
       </div>
     </section>

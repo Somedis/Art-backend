@@ -1,47 +1,37 @@
 {% extends 'base.html' %}
 
-{% block menuactive %}
-<li class="mr-8"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="{% url 'home' %}"
-        data-config-id="auto-txt-1-1">Home</a></li>
-<li class="mr-8"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="{% url 'arts' %}"
-        data-config-id="auto-txt-4-1">Arts</a></li>
-{% endblock menuactive %}
+{% block row %}
+<div class="col-lg-2 col-md-12 mt-4">
+</div>
 
-{% block burgmenu %}
-<li class="mb-9"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="{% url 'home' %}"
-        data-config-id="auto-txt-7-1">Home</a></li>
-<li class="mb-9"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="{% url 'arts' %}"
-        data-config-id="auto-txt-10-1">Arts</a></li>
-{% endblock burgmenu %}
-
+<div class="col-lg-8 col-md-12 mt-4">
 {% block content %}
-<div class="art-card mt-5">
+<div class="mt-4 sh-img">
     <div class="position-img">
         {% if art.image %}
         <img class="img-f-art" src="{{art.image.url}}">
         {% endif %}
     </div>
-    {{art.content|linebreaks}}
-</div>
-{% endblock content %}
-
-{% block post %}
-<div class="row sidebarmain mt-4">
-    {% for p in posts %}
-    <div class="col-lg-12 sidebar mt-4">
-        <div class="posts">
-            <label class="user-name rounded-full disabled">{{p.user}}</label>
-        </div>
-        {% if p.title %}
-        <div class="title">
-            <label><span>Title: </span>{{p.title}}</label>
-        </div>
-        {% endif %}
-        <p>{{p.content}}</p>
-        <div class="date-tm">
-            <label class="date-lab">{{p.time_create}}</label>
-        </div>
+  </div>
+  <div class="about-art-wrap">
+    <div class="about-art">
+      {% for c in cats %}
+      {% if art.cat_id == c.pk %}
+      <li>
+        <label>Category:
+          <a href="{{ c.get_absolute_url }}">{{ c.title }}</a>
+        </label>
+      </li>
+      {% endif %}
+      {% endfor %}
+      <li>
+        <label>adding time: {{ art.time_create }}</label>
+      </li>
     </div>
-    {% endfor %}
+  </div>
+{% endblock content %}
 </div>
-{% endblock post %}
+
+<div class="col-lg-2 col-md-12 mt-4">
+</div>
+{% endblock row %}

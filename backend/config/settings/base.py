@@ -42,6 +42,7 @@ LOCAL_APPS = [
     'arts',
     'post',
     'users',
+    'category',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY + LOCAL_APPS
