@@ -1,11 +1,8 @@
-from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView
 
 from .utils import DataMixin
 
 from .models import Arts
-
-from category.models import Category
 
 
 class ArtsView(DataMixin, ListView):
@@ -38,16 +35,6 @@ class ShowCategoryView(DataMixin, ListView):
         context = super().get_context_data(**kwargs)
         c_def = self.get_user_context(cat_selected=context['arts'][0].cat_id)
         return dict(list(context.items()) + list(c_def.items()))
-
-
-def show_art(request, art_slug):
-    art = get_object_or_404(Arts, slug=art_slug)
-
-    context = {
-        'art': art,
-    }
-
-    return render(request, 'arts/show_art.html', context=context)
 
 
 class ShowArtView(DataMixin, DetailView):

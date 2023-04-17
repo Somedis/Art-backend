@@ -19,7 +19,6 @@
 {% endblock burgmenu %}
 
 {% block row %}
-
 <div class="col-lg-12 col-md-12 mt-2">
   <div class="row">
     <div class="cats">
@@ -32,20 +31,19 @@
         {% endif %}
 
         {% for c in cats|dictsort:"title" %}
-          {% if c.arts__count > 0 %}
-            {% if c.pk == cat_selected %}
-            <label class="selc_cat">{{ c.title }}</label>
-            {% else %}
-            <a href="{{ c.get_cat_url }}">{{ c.title }}</a>
-            {% endif %}
-          {% endif %}
+        {% if c.arts__count > 0 %}
+        {% if c.pk == cat_selected %}
+        <label class="selc_cat">{{ c.title }}</label>
+        {% else %}
+        <a href="{{ c.get_cat_url }}">{{ c.title }}</a>
+        {% endif %}
+        {% endif %}
         {% endfor %}
       </div>
       <div class="cat"></div>
     </div>
   </div>
 </div>
-
 
 <div class="col-lg-12 col-md-12 mt-2">
   {% block content %}
@@ -74,6 +72,35 @@
     {% endif %}
     {% endfor %}
   </div>
+
+  {% if page_obj.has_other_pages %}
+  <section class="mt-5 list-pages">
+    <ul class="page-num">
+      {% if page_obj.has_previous %}
+      <a href="?page={{ page_obj.previous_page_number }}">
+        <li>Previous</li>
+      </a>
+      {% endif %}
+
+      {% for pg in page_obj.paginator.page_range %}
+      {% if page_obj.number == pg %}
+      <a href="?page={{ pg }}" class="page-active">
+        <li>{{ pg }}</li>
+      </a>
+      {% elif pg >= page_obj.number|add:-2 and pg <= page_obj.number|add:2 %} <a href="?page={{ pg }}">
+        <li>{{ pg }}</li></a>
+        {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">
+          <li>Next</li>
+        </a>
+        {% endif %}
+    </ul>
+  </section>
+  {% endif %}
   {% endblock content %}
 </div>
+
 {% endblock row %}

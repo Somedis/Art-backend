@@ -1,6 +1,6 @@
 .wrappers {
-    height: 575px;
-    width: 500px;
+    height: 600px;
+    width: 580px;
     margin: 0;
     padding-top: 0;
 }
@@ -20,4 +20,5 @@
     border: 2px solid whitesmoke;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, .5);
+    background-color: whitesmoke;
 }

@@ -1,30 +1,16 @@
-from django.shortcuts import redirect, render
-# from django.views.generic import CreateView
-# from django.urls import reverse_lazy
+from django.views.generic import CreateView
+from django.urls import reverse_lazy
+from django.contrib.auth.models import User
 
 from .forms import PostForm
 
 
-def add_post(request):
-    if request.method == "POST":
-        form = PostForm(request.POST)
-        if form.is_valid():
-            obj = form.save(commit=False)
-            obj.user = request.user
-            obj.save()
-            form.save_m2m()
-            return redirect('home')
+class AddPostView(CreateView):
 
-    form = PostForm()
-    context = {
-        'form': form
-    }
+    form_class = PostForm
+    template_name = 'posts/add_post.html'
+    success_url = reverse_lazy('home')
 
-    return render(request, 'posts/add_post.html', context=context)
-
-
-# class PostView(CreateView):
-
-#     form_class = PostForm
-#     template_name = 'posts/add_post.html'
-#     success_url = reverse_lazy('home')
+    def form_valid(self, form):
+        form.instance.user = User.objects.get(username=self.request.user)
+        return super(AddPostView, self).form_valid(form)

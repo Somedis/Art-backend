@@ -26,10 +26,10 @@
     <div class="card">
       <a href="{{ c.get_absolute_url }}"><img src="{{c.image.url}}" class="card-img-top" alt=""></a>
       <div class="card-body">
-        <!-- !!! card title !!! -->
-        <h5 class="card-title font-bold"><a href="">{{c.title}}</a></h5>
+        <h5 class="card-title font-bold">
+          <a href="{{ c.get_absolute_url }}">{{c.title}}</a>
+        </h5>
         <p class="card-text pb-2">
-          <!-- !!! card content !!! -->
           <a href="{{ c.get_absolute_url }}">{{c.content|truncatechars:60}}</a>
         </p>
         <a href="{{ c.get_absolute_url }}" class="btn btn-primary" id="btn-more">More</a>

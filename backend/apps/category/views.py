@@ -1,41 +1,36 @@
-from django.shortcuts import render, get_object_or_404
-from django.core.paginator import Paginator
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView, DetailView
 
 from .models import Category
 
 from .forms import AddCategoryForm
 
-from post.models import Posts
+from .utils import DataMixin
 
 
-def categories(request):
-    cats = Category.objects.all()
-    posts = Posts.objects.all()
+class CategoriesView(DataMixin, ListView):
 
-    paginator = Paginator(posts, 5)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
+    model = Category
+    template_name = 'category/categories.html'
+    context_object_name = 'cats'
 
-    return render(request, 'category/categories.html', {'cats': cats,
-                                                        'page_obj': page_obj})
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context()
+        return dict(list(context.items()) + list(c_def.items()))
 
 
-def show_category(request, cats_slug):
-    posts = Posts.objects.all()
-    cat = get_object_or_404(Category, slug=cats_slug)
+class CategoryView(DataMixin, DetailView):
 
-    paginator = Paginator(posts, 5)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
+    model = Category
+    template_name = 'category/show_category.html'
+    slug_url_kwarg = 'cats_slug'
+    context_object_name = 'cat'
 
-    context = {
-        'cat': cat,
-        'page_obj': page_obj,
-    }
-
-    return render(request, 'category/show_category.html', context=context)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context()
+        return dict(list(context.items()) + list(c_def.items()))
 
 
 class AddCategoryView(CreateView):
