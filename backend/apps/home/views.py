@@ -1,12 +1,11 @@
-from django.core.paginator import Paginator
 from django.views.generic import ListView
 
 from .models import PreviewImage
 
-from post.models import Posts
+from core.utils import DataMixinPost
 
 
-class HomePageView(ListView):
+class HomePageView(DataMixinPost, ListView):
 
     model = PreviewImage
     template_name = 'home/index.html'
@@ -14,12 +13,6 @@ class HomePageView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        page = self.request.GET.get('page')
-        paginator = Paginator(Posts.objects.all(), 3)
-        try:
-            items = paginator.page(page)
-        except Exception:
-            items = paginator.page(1)
-        context['page_obj'] = items
-        context['count'] = range(0, PreviewImage.objects.all().__len__())
-        return context
+        c_def = self.get_user_context(count=3)
+        context['count'] = range(0, self.model.objects.count())
+        return dict(list(context.items()) + list(c_def.items()))

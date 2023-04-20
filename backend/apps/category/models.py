@@ -7,7 +7,7 @@ class Category(models.Model):
     slug = models.SlugField(max_length=255, unique=True,
                             db_index=True, verbose_name='URL')
     content = models.TextField(blank=True)
-    image = models.ImageField(upload_to='Art-images/%Y/%m/%d/')
+    image = models.ImageField(upload_to='Cat-images/%Y/%m/%d/')
     time_create = models.DateTimeField(auto_now_add=True)
     time_update = models.DateTimeField(auto_now=True)
     is_publish = models.BooleanField(default=True)

@@ -5,10 +5,10 @@ from .models import Category
 
 from .forms import AddCategoryForm
 
-from .utils import DataMixin
+from core.utils import DataMixinPost
 
 
-class CategoriesView(DataMixin, ListView):
+class CategoriesView(DataMixinPost, ListView):
 
     model = Category
     template_name = 'category/categories.html'
@@ -16,11 +16,11 @@ class CategoriesView(DataMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context()
+        c_def = self.get_user_context(count=5)
         return dict(list(context.items()) + list(c_def.items()))
 
 
-class CategoryView(DataMixin, DetailView):
+class CategoryView(DataMixinPost, DetailView):
 
     model = Category
     template_name = 'category/show_category.html'
@@ -29,7 +29,7 @@ class CategoryView(DataMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context()
+        c_def = self.get_user_context(count=5)
         return dict(list(context.items()) + list(c_def.items()))
 
 

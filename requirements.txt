@@ -1,3 +1,5 @@
 Django
 Pillow
 psycopg2
+django-debug-toolbar
+python-dotenv

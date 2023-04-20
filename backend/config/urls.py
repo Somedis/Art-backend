@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 from django.conf.urls.static import static
 
 from config.settings import base
@@ -30,6 +30,10 @@ urlpatterns = [
 ]
 
 if base.DEBUG:
+    import debug_toolbar
+    urlpatterns = [
+        path('__debug__/', include(debug_toolbar.urls)),
+    ] + urlpatterns
 
     urlpatterns += static(base.MEDIA_URL,
                           document_root=base.MEDIA_ROOT)

@@ -1,11 +1,11 @@
 from django.views.generic import ListView, DetailView
 
-from .utils import DataMixin
+from core.utils import DataMixinCat
 
 from .models import Arts
 
 
-class ArtsView(DataMixin, ListView):
+class ArtsView(DataMixinCat, ListView):
 
     model = Arts
     template_name = 'arts/arts.html'
@@ -20,7 +20,7 @@ class ArtsView(DataMixin, ListView):
         return dict(list(context.items()) + list(c_def.items()))
 
 
-class ShowCategoryView(DataMixin, ListView):
+class ShowCategoryView(DataMixinCat, ListView):
 
     model = Arts
     template_name = 'arts/arts.html'
@@ -37,7 +37,7 @@ class ShowCategoryView(DataMixin, ListView):
         return dict(list(context.items()) + list(c_def.items()))
 
 
-class ShowArtView(DataMixin, DetailView):
+class ShowArtView(DataMixinCat, DetailView):
 
     model = Arts
     template_name = 'arts/show_art.html'

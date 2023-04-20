@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
+{% load cache %}
 
 {% block content %}
+{% cache 60 carousel %}
+{% if homepage %}
 <div class="row mt-5 px-2">
   <div class="some-cont">
     <div id="carouselExampleCaptions" class="carousel slide">
@@ -34,6 +37,8 @@
     </div>
   </div>
 </div>
+{% endif %}
+{% endcache %}
 {% endblock content %}
 
 {% block post %}
@@ -43,15 +48,16 @@
 </div>
 {% endif %}
 
+{% if page_obj %}
 <div class="row sidebarmain">
   <div class="col-lg-12 sidebar mt-4">
     {% for p in page_obj %}
     <div class="post-view">
       <div class="posts">
         {% if p.user.is_staff == True %}
-        <label class="user-name rounded-full disabled">{{p.user}} - Admin</label>
+        <label class="user-name rounded-full disabled">{{p.user.username}} - Admin</label>
         {% else %}
-        <label class="user-name rounded-full disabled">{{p.user}}</label>
+        <label class="user-name rounded-full disabled">{{p.user.username}}</label>
         {% endif %}
       </div>
       <p class="post-content">{{p.content}}</p>
@@ -62,6 +68,7 @@
     {% endfor %}
   </div>
 </div>
+{% endif %}
 
 {% if page_obj.has_other_pages %}
 <section class="mt-4 list-pages">
