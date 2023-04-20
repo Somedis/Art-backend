@@ -1,6 +1,7 @@
 /env
 *.env
 .vscode
+/media
 venv
 site_cache
 postgres.txt
