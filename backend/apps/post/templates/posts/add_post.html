@@ -1,0 +1,56 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/add_post.css' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png' %}">
+    <title>Add post</title>
+</head>
+
+<body>
+    <div class="wrappers">
+        <a href="{{request.META.HTTP_REFERER|escape}}">
+            <span class="icon-close">
+                <ion-icon name="close-outline"></ion-icon>
+            </span>
+        </a>
+        <div class="form-box">
+            <h2>Add post</h2>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="input-box titlep">
+                    <!-- <span class="icon">
+                        <ion-icon name="pencil"></ion-icon>
+                    </span> -->
+                    <!-- <input type="text" required> -->
+                    <!-- {{ form.title }} -->
+                    <!-- <label id="title">Title</label> -->
+                    <label>Post from user - {{ request.user.username }}</label>
+                </div>
+                <div class="textar">
+                    <label>Content</label>
+                    <br>
+                    <!-- <textarea name="content" id="content" cols="30" rows="10" maxlength="256"></textarea> -->
+                    {{ form.content }}
+                </div>
+                <div class="button-cont">
+                    <button type="submit" class="btn">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="{% static 'js/is_empty.js' %}"></script>
+</body>
+
+</html>

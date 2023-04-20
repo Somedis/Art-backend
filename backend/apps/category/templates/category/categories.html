@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block menuactive %}
+<li class="mr-8"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="{% url 'home' %}"
+    data-config-id="auto-txt-1-1">Home</a></li>
+<li class="mr-8"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700 active" href="{% url 'cats' %}"
+    data-config-id="auto-txt-1-1">Categories</a></li>
+<li class="mr-8"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700"
+    href="{% url 'arts' %}" data-config-id="auto-txt-4-1">Arts</a></li>
+{% endblock menuactive %}
+
+{% block burgmenu %}
+<li class="mb-9"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="{% url 'home' %}"
+    data-config-id="auto-txt-7-1">Home</a></li>
+<li class="mb-9"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700 active" href="{% url 'cats' %}"
+    data-config-id="auto-txt-7-1">Categories</a></li>
+<li class="mb-9"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700"
+    href="{% url 'arts' %}" data-config-id="auto-txt-10-1">Arts</a></li>
+{% endblock burgmenu %}
+
+{% block content %}
+<div class="row">
+  {% for c in cats %}
+  {% if c.is_publish == True %}
+  <div class="col-lg-4 col-md-6 mt-5">
+    <div class="card">
+      <a href="{{ c.get_absolute_url }}"><img src="{{c.image.url}}" class="card-img-top" alt=""></a>
+      <div class="card-body">
+        <h5 class="card-title font-bold">
+          <a href="{{ c.get_absolute_url }}">{{c.title}}</a>
+        </h5>
+        <p class="card-text pb-2">
+          <a href="{{ c.get_absolute_url }}">{{c.content|truncatechars:60}}</a>
+        </p>
+        <a href="{{ c.get_absolute_url }}" class="btn btn-primary" id="btn-more">More</a>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+  {% endfor %}
+</div>
+{% endblock content %}
+
+{% block post %}
+{% if request.user.is_authenticated %}
+<div class="add-post mt-4">
+  <a href="{% url 'addPost' %}" class="btn-add">Add post</a>
+</div>
+{% endif %}
+
+{% if page_obj %}
+<div class="row sidebarmain">
+  <div class="col-lg-12 sidebar mt-4">
+    {% for p in page_obj %}
+    <div class="post-view">
+      <div class="posts">
+        {% if p.user.is_staff == True %}
+        <label class="user-name rounded-full disabled">{{p.user}} - Admin</label>
+        {% else %}
+        <label class="user-name rounded-full disabled">{{p.user}}</label>
+        {% endif %}
+      </div>
+      <p class="post-content">{{p.content}}</p>
+      <div class="date-tm">
+        <label class="date-lab rounded-full disabled">{{p.time_create}}</label>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+{% if page_obj.has_other_pages %}
+<section class="mt-4 list-pages">
+  <ul class="page-num">
+    {% if page_obj.has_previous %}
+    <a href="?page={{ page_obj.previous_page_number }}">
+      <li>&lt;</li>
+    </a>
+    {% endif %}
+
+    {% for pg in page_obj.paginator.page_range %}
+    {% if page_obj.number == pg %}
+    <a href="?page={{ pg }}" class="page-active">
+      <li>{{ pg }}</li>
+    </a>
+    {% elif pg >= page_obj.number|add:-1 and pg <= page_obj.number|add:1 %} <a href="?page={{ pg }}">
+      <li>{{ pg }}</li></a>
+      {% endif %}
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}">
+        <li>&gt;</li>
+      </a>
+      {% endif %}
+  </ul>
+</section>
+{% endif %}
+{% endblock post %}

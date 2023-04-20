@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block menuactive %}
+<li class="mr-8"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="{% url 'home' %}"
+    data-config-id="auto-txt-1-1">Home</a></li>
+<li class="mr-8"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="{% url 'cats' %}"
+    data-config-id="auto-txt-1-1">Categories</a></li>
+<li class="mr-8"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700"
+    href="{% url 'arts' %}" data-config-id="auto-txt-4-1">Arts</a></li>
+{% endblock menuactive %}
+
+{% block burgmenu %}
+<li class="mb-9"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="{% url 'home' %}"
+    data-config-id="auto-txt-7-1">Home</a></li>
+<li class="mb-9"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="{% url 'cats' %}"
+    data-config-id="auto-txt-7-1">Categories</a></li>
+<li class="mb-9"><a class="inline-block text-sm font-bold text-gray-900 hover:text-gray-700"
+    href="{% url 'arts' %}" data-config-id="auto-txt-10-1">Arts</a></li>
+{% endblock burgmenu %}
+
+{% block row %}
+<div class="col-lg-2 col-md-12 mt-4">
+</div>
+
+<div class="col-lg-8 col-md-12 mt-4">
+{% block content %}
+<div class="mt-4 sh-img">
+    <div class="position-img">
+        {% if art.image %}
+        <img class="img-f-art" src="{{art.image.url}}">
+        {% endif %}
+    </div>
+  </div>
+  <div class="about-art-wrap">
+    <div class="about-art">
+      {% for c in cats %}
+      {% if art.cat_id == c.pk %}
+      <li>
+        <label>Category:
+          <a href="{{ c.get_absolute_url }}">{{ c.title }}</a>
+        </label>
+      </li>
+      {% endif %}
+      {% endfor %}
+      <li>
+        <label>adding time: {{ art.time_create }}</label>
+      </li>
+    </div>
+  </div>
+{% endblock content %}
+</div>
+
+<div class="col-lg-2 col-md-12 mt-4">
+</div>
+{% endblock row %}
