@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load cache %}
+
+{% block content %}
+{% cache 60 carousel %}
+{% if homepage %}
+<div class="row mt-5 px-2">
+  <div class="some-cont">
+    <div id="carouselExampleCaptions" class="carousel slide">
+      <div class="carousel-indicators">
+        {% for i in count %}
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{i}}"
+          class="{% if forloop.counter0 == 0 %}active{% endif %}" aria-current="true"></button>
+        {% endfor %}
+      </div>
+      <div class="carousel-inner">
+        {% for h in homepage %}
+        <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %}">
+          <img src="{{h.image.url}}" class="d-block w-100" alt="">
+          <div class="carousel-caption d-none d-md-block">
+            <h5 class="my-1 sm-text">{{h.title}}</h5>
+            <p class="sm-text">{{h.content}}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endcache %}
+{% endblock content %}
+
+{% block post %}
+{% if request.user.is_authenticated %}
+<div class="add-post mt-4">
+  <a href="{% url 'addPost' %}" class="btn-add">Add post</a>
+</div>
+{% endif %}
+
+{% if page_obj %}
+<div class="row sidebarmain">
+  <div class="col-lg-12 sidebar mt-4">
+    {% for p in page_obj %}
+    <div class="post-view">
+      <div class="posts">
+        {% if p.user.is_staff == True %}
+        <label class="user-name rounded-full disabled">{{p.user.username}} - Admin</label>
+        {% else %}
+        <label class="user-name rounded-full disabled">{{p.user.username}}</label>
+        {% endif %}
+      </div>
+      <p class="post-content">{{p.content}}</p>
+      <div class="date-tm">
+        <label class="date-lab rounded-full disabled">{{p.time_create}}</label>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+{% if page_obj.has_other_pages %}
+<section class="mt-4 list-pages">
+  <ul class="page-num">
+    {% if page_obj.has_previous %}
+    <a href="?page={{ page_obj.previous_page_number }}">
+      <li>&lt;</li>
+    </a>
+    {% endif %}
+
+    {% for pg in page_obj.paginator.page_range %}
+    {% if page_obj.number == pg %}
+    <a href="?page={{ pg }}" class="page-active">
+      <li>{{ pg }}</li>
+    </a>
+    {% elif pg >= page_obj.number|add:-1 and pg <= page_obj.number|add:1 %} <a href="?page={{ pg }}">
+      <li>{{ pg }}</li></a>
+    {% endif %}
+    {% endfor %}
+
+      {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}">
+        <li>&gt;</li>
+      </a>
+      {% endif %}
+  </ul>
+</section>
+{% endif %}
+{% endblock post %}

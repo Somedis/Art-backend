@@ -1,0 +1,28 @@
+.wrappers {
+    height: 520px;
+}
+
+.wrappers.active {
+    height: 440px;
+}
+
+.wrappers .form-box.register {
+    transition: transform .18s ease;
+    transform: translateX(0);
+}
+
+.wrappers.active .form-box.register {
+    transition: none;
+    transform: translateX(-400px);
+}
+
+.wrappers .form-box.login {
+    position: absolute;
+    transition: none;
+    transform: translateX(400px);
+}
+
+.wrappers.active .form-box.login {
+    transition: transform .18s ease;
+    transform: translateX(0);
+}
