@@ -13,7 +13,9 @@
   <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}">
   <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png' %}">
   <script src="{% static 'js/main.js' %}"></script>
+  {% block title %}
   <title>Home</title>
+  {% endblock title %}
 </head>
 
 <body>
@@ -177,7 +179,7 @@
       {% block footersection %}
       <section data-section-id="1" data-share="" data-category="footers-light-reverse" data-component-id="6fcf3400_03_awz" class="py-10 overflow-hidden">
       {% endblock footersection %}
-        <div class="container mx-auto px-4 mt-5">
+        <div class="container mx-auto px-4 mt-5 py-5">
           <div class="py-8 px-8 mb-8 bg-white rounded-3xl">
             <div class="max-w-7xl mx-auto">
               <div class="flex flex-wrap items-center justify-between -m-4">

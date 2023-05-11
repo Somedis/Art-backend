@@ -1,5 +1,6 @@
-Django
+Django==4.1.7
 Pillow
 psycopg2
 django-debug-toolbar
 python-dotenv
+gunicorn

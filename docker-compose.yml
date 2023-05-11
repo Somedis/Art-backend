@@ -1,0 +1,54 @@
+version: '3.9'
+
+services:
+  nginx:
+    container_name: nginx
+    restart: always
+    build:
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
+    volumes:
+      - static_volume:/code/static
+      - ~/media_volume:/code/media
+    ports:
+      - 80:80
+    depends_on:
+      - web
+
+  web:
+    container_name: backend
+    build:
+      context: .
+      dockerfile: ./docker/backend/Dockerfile
+    command: bash -c "python manage.py collectstatic --noinput && \
+      python manage.py migrate --noinput && \
+      gunicorn config.wsgi:application --log-level debug --timeout 120 --bind 0.0.0.0:8000 --reload"
+    env_file:
+      - ./.env
+    volumes:
+      - static_volume:/code/static
+      - ~/media_volume:/code/media
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    container_name: postgres_db
+    image: postgres:15
+    restart: always
+    volumes:
+      - ~/postgres_data:/var/lib/postgresql/data
+    env_file:
+      - ./.env
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    healthcheck:
+      test: "pg_isready -U postgres"
+      interval: 5s
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:

@@ -1,1 +1,1 @@
-Art website with data
+Art website with Django framework
