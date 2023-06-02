@@ -1,9 +1,10 @@
 function checkValid(){
-var input = document.getElementById("id_title").value;
+    var input = document.getElementById("id_email").value;
+    var emailText = document.getElementById('emailText');
 
         if (input.trim() == '') {
-            document.getElementById('title').style.transform= 'translateY(0)';
+            emailText.style.transform= '';
         } else {
-            document.getElementById('title').style.transform = 'translateY(-40px)';
+            emailText.style.transform = 'translate3d(0, -175%, 0)';
         }
 }

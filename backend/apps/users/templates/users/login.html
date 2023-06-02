@@ -5,6 +5,46 @@
 <link rel="stylesheet" href="{% static 'css/login.css' %}">
 {% endblock css %}
 
-{% block script %}
-<script src="{% static 'js/login.js' %}"></script>
-{% endblock script %}
+{% block body %}
+<div class="errors">
+    <div class="errors-style">
+        {{ form.non_field_errors }}
+    </div>
+</div>
+<div class="wrappers">
+    <a href="{% url 'home' %}">
+        <span class="icon-close">
+            <ion-icon name="close-outline"></ion-icon>
+        </span>
+    </a>
+    <div class="form-box login">
+        <h2>Login</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="input-box">
+                <span class="icon">
+                    <ion-icon name="person"></ion-icon>
+                </span>
+                {{ form.username }}
+                <label class="lab">Username</label>
+            </div>
+            <div class="input-box">
+                <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                {{ form.password }}
+                <label class="lab">Password</label>
+            </div>
+            <div class="remember-forgot">
+                <label><input type="checkbox">Remember me</label>
+                <a href="#">Forgot Password?</a>
+            </div>
+            <button type="submit" class="btn">Login</button>
+            <div class="login-register">
+                <p>
+                    Don't have an account? <a class="register-link" href="{% url 'registration' %}">Register</a>
+                </p>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock body %}
+

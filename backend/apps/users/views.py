@@ -1,53 +1,32 @@
-from django.shortcuts import render, redirect
+from django.forms.models import BaseModelForm
+from django.http import HttpResponse
+from django.shortcuts import redirect
 from django.contrib.auth import login, logout
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
+from django.contrib.auth.views import LoginView
 
 from .forms import RegistrationUserForm, LoginUserForm
 
 
-def registration(request):
-    if request.method == 'POST':
-        form_regist = RegistrationUserForm(request.POST)
-        form_login = LoginUserForm(request, data=request.POST)
-        if form_regist.is_valid():
-            user_new = form_regist.save()
-            login(request, user_new)
-            return redirect('home')
-        elif form_login.is_valid():
-            user = form_login.get_user()
-            login(request, user)
-            return redirect('home')
+class RegistrationUser(CreateView):
 
-    form_regist = RegistrationUserForm()
-    form_login = LoginUserForm()
+    form_class = RegistrationUserForm
+    template_name = 'users/registration.html'
+    success_url = reverse_lazy('login')
 
-    context = {
-        'form_regist': form_regist,
-        'form_login': form_login,
-    }
-    return render(request, 'users/registration.html', context=context)
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        user = form.save()
+        login(self.request, user)
+        return redirect('home')
 
 
-def login_user(request):
-    if request.method == 'POST':
-        form_regist = RegistrationUserForm(request.POST)
-        form_login = LoginUserForm(request, data=request.POST)
-        if form_regist.is_valid():
-            user_new = form_regist.save()
-            login(request, user_new)
-            return redirect('home')
-        elif form_login.is_valid():
-            user = form_login.get_user()
-            login(request, user)
-            return redirect('home')
+class LoginUser(LoginView):
+    form_class = LoginUserForm
+    template_name = 'users/login.html'
 
-    form_regist = RegistrationUserForm()
-    form_login = LoginUserForm()
-
-    context = {
-        'form_regist': form_regist,
-        'form_login': form_login,
-    }
-    return render(request, 'users/login.html', context=context)
+    def get_success_url(self):
+        return reverse_lazy('home')
 
 
 def logout_user(request):

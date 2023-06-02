@@ -20,6 +20,33 @@ body {
     background-position: center;
 }
 
+.errors {
+    position:absolute;
+    height: 725px;
+}
+
+.errors-style {
+    width: 340px;
+}
+
+.errors-style ul {
+    list-style-type: none;
+    color: red;
+    background: transparent;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+    border-radius: 20px;
+    border: 2px solid red;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.errors-style li {
+    margin-right: 0px;
+    text-align: center;
+}
+
 .wrappers {
     position: relative;
     width: 400px;
@@ -44,27 +71,6 @@ body {
 .wrappers .form-box {
     width: 100%;
     padding: 40px;
-}
-
-.wrappers .form-box.login {
-    transition: transform .18s ease;
-    transform: translateX(0);
-}
-
-.wrappers.active .form-box.login {
-    transition: none;
-    transform: translateX(-400px);
-}
-
-.wrappers .form-box.register {
-    position: absolute;
-    transition: none;
-    transform: translateX(400px);
-}
-
-.wrappers.active .form-box.register {
-    transition: transform .18s ease;
-    transform: translateX(0);
 }
 
 .wrappers .icon-close {
@@ -108,8 +114,8 @@ body {
     transition: 0.5s;
 }
 
-.input-box input:focus~label,
-.input-box input:valid~label {
+.input-box input:focus~.lab,
+.input-box input:valid~.lab {
     top: -5px;
 }
 

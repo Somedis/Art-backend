@@ -6,23 +6,21 @@
     height: 440px;
 }
 
-.wrappers .form-box.register {
-    transition: transform .18s ease;
-    transform: translateX(0);
+.error-text ul {
+    list-style-type: none;
+    float: right;
 }
 
-.wrappers.active .form-box.register {
-    transition: none;
-    transform: translateX(-400px);
+.error-text li {
+    color: red;
+    font-size: 0.9em;
 }
 
-.wrappers .form-box.login {
-    position: absolute;
-    transition: none;
-    transform: translateX(400px);
+.emlab {
+    transition: all 200ms;
 }
 
-.wrappers.active .form-box.login {
-    transition: transform .18s ease;
-    transform: translateX(0);
+.formlab:focus~.emlab,
+.formlab:valid~.emlab {
+    transform: translate3d(0, -175%, 0);
 }
